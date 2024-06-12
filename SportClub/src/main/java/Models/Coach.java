@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Coach extends Employee {
     public ArrayList<Certificate> certificates=new ArrayList<>();
-    public ArrayList<Workout> clientsWorkout=new ArrayList<>();
+    public ArrayList<Workout> trainingPlans =new ArrayList<>();
     public Coach(String position, double salary, ArrayList<Contract> contracts, Person person,Certificate certificate) {
         super(person,position, salary, contracts);
         this.certificates.add(certificate);
@@ -30,8 +30,7 @@ public class Coach extends Employee {
         else
             throw new Exception("This certificate is already added");
     }
-    public void addClient(Client c, String workoutDescr) throws Exception {
-        Workout w=new Workout(workoutDescr,c,this);
-        this.clientsWorkout.add(w);
+    public void createTrainPlan(Workout workout) throws Exception {
+        this.trainingPlans.add(workout);
     }
 }

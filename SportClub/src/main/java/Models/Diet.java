@@ -7,10 +7,11 @@ public class Diet {
         private int id;
         public String Description;
         private Client client;
-        private Dietition dietition;
+        private IDietition dietition;
+
         private static ArrayList<Diet> instances=new ArrayList<>();
 
-        public Diet( String description, Client client, Dietition Dietition) throws Exception {
+        public Diet( String description, Client client, IDietition Dietition) throws Exception {
             int idToCheck= instances.isEmpty()?0: instances.get(instances.size()-1).id+1;
             for(Models.Diet w : instances){
                 if (w.id==idToCheck)

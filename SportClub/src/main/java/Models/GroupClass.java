@@ -22,7 +22,14 @@ public class GroupClass {
     public Client findClient(int id){
         return this.clientQualif.get(id);
     }
-
+    public void removeClient(Client client){
+        if (clientQualif.containsValue(client)) {
+            clientQualif.remove(client.personLink.getId());
+            System.out.println("Client succesfully removed from class");
+        }
+        else
+            System.out.println("Provided client is not registered for this class");
+    }
     @Override
     public String toString() {
         return "GroupClass{" +
