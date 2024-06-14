@@ -31,7 +31,7 @@ public class Subscription implements Serializable {
         return "Subscription{" +
                 "type=" + type.name() +
                 ", expireDate=" + expireDate +
-                ", client=" + client.personLink.firstName+" " +client.personLink.lastName+
+                ", client=" + client.getPersonLink().firstName+" " +client.getPersonLink().lastName+
                 '}';
     }
 }

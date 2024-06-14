@@ -1,11 +1,15 @@
 package Models;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class Coach extends Employee {
-    public ArrayList<Certificate> certificates=new ArrayList<>();
-    public ArrayList<Workout> trainingPlans =new ArrayList<>();
+
+    public ArrayList<Certificate> certificates = new ArrayList<>();
+
+    public ArrayList<Workout> trainingPlans = new ArrayList<>();
     public Coach(String position, double salary, ArrayList<Contract> contracts, Person person,Certificate certificate) {
         super(person,position, salary, contracts);
         this.certificates.add(certificate);

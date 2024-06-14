@@ -1,17 +1,22 @@
 package Models;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Diet {
 
-        private int id;
-        public String Description;
-        private Client client;
-        private IDietition dietition;
+public class Diet implements Serializable {
+
+    private int id;
+    public String Description;
+
+    public Client client;
+
+    public IDietitian dietitian;
 
         private static ArrayList<Diet> instances=new ArrayList<>();
 
-        public Diet( String description, Client client, IDietition Dietition) throws Exception {
+        public Diet( String description, Client client, IDietitian dietitian) throws Exception {
             int idToCheck= instances.isEmpty()?0: instances.get(instances.size()-1).id+1;
             for(Models.Diet w : instances){
                 if (w.id==idToCheck)
@@ -20,7 +25,7 @@ public class Diet {
             this.id=idToCheck;
             Description = description;
             this.client = client;
-            this.dietition = Dietition;
+            this.dietitian = dietitian;
             client.setDiet(this);
             instances.add(this);
         }

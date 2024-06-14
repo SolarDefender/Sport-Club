@@ -1,16 +1,20 @@
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Employee {
-    public String position;
-    public double salary;
-    private ArrayList<Contract> contracts=new ArrayList<>();
-    private Employee supervisor;
-    private ArrayList<Employee> subordinates=new ArrayList<>();
+public class Employee implements Serializable {
+
+    private String position;
+    private double salary;
+
+    private ArrayList<Contract> contracts = new ArrayList<>();
     private Person personLink;
+    private Employee supervisor;
+    private ArrayList<Employee> subordinates = new ArrayList<>();
+    private static ArrayList<Employee> instances =new ArrayList<>();
 
     public Employee( Person person, String position, double salary, ArrayList<Contract> contracts) {
         this.position = position;
@@ -18,12 +22,26 @@ public class Employee {
         this.contracts = contracts;
         this.personLink = person;
         this.personLink.setEmployee(this);
+        for (Contract c: contracts)
+            c.setEmp(this);
+        instances.add(this);
     }
     public Employee(String firstName, String lastName, LocalDate  date_of_Birth, String phoneNumber, String email, String password, String position, double salary, ArrayList<Contract> contracts) throws Exception {
         this.position = position;
         this.salary = salary;
         this.contracts = contracts;
+        for (Contract c: contracts)
+            c.setEmp(this);
         Person.createEmployee(this, firstName,  lastName,   date_of_Birth,  phoneNumber,  email, password);
+        instances.add(this);
+    }
+
+    public static ArrayList<Employee> getInstances() {
+        return instances;
+    }
+
+    public static void setInstances(ArrayList<Employee> instances) {
+        Employee.instances = instances;
     }
 
     public void setSupervisor(Employee supervisor) {
@@ -57,14 +75,16 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Models.Employee{" +
-                "position='" + position + '\'' +
-                ", salary=" + salary +
-                ", FirstName='" + personLink.firstName + '\'' +
-                ", LastName='" + personLink.lastName + '\'' +
-                ", id=" + this.personLink.getId() +
+        return "Employee{\n" +this.getClass().getSimpleName()+"\n"+
+                " id=" + personLink.getId() + "\n" +
+                " FirstName='" + personLink.firstName + "'\n" +
+                " LastName='" + personLink.lastName + "'\n" +
+                " Date_of_Birth=" + personLink.Date_of_Birth + "\n" +
+                " position='" + position + "'\n" +
+                " salary=" + salary + "\n" +
                 '}';
     }
+
 
     public void setPosition(String position) {
         this.position = position;

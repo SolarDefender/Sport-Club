@@ -1,7 +1,9 @@
 package Models;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 
 public class Administrator extends Employee{
     public Administrator(String position, double salary, ArrayList<Contract> contracts, Person person) {

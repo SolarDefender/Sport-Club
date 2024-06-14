@@ -1,16 +1,17 @@
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Diploma {
+public class Diploma implements Serializable {
     public int id;
     public String university;
     public String title;
 
     public LocalDate startDate;
     public LocalDate endDate;
-    private static ArrayList<Diploma> instances=new ArrayList<>();
+    private static final ArrayList<Diploma> instances=new ArrayList<>();
     public Diploma(int id, String university, String title, LocalDate startDate, LocalDate endDate) throws Exception {
         if(startDate.isAfter(endDate))
             throw new Exception("Wrong date");

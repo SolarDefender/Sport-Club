@@ -1,35 +1,50 @@
 package Models;
 
+
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class Person {
+public class Person implements Serializable{
+    private int id;
     public String firstName;
     public String lastName;
-    public LocalDate Date_of_Birth; //pochodny
+    public LocalDate Date_of_Birth;
     public int age;
-    private String phoneNumber;
+    public String phoneNumber;
     public String email;
-    private int id;
-    private String password;
+    public String password;
+
     private Client clientLink;
+
     private Employee employeeLink;
-    private static ArrayList<Person> instances =new ArrayList<>(); // powt
+    private static ArrayList<Person> instances = new ArrayList<>();
+
+    public static void setInstances(ArrayList<Person> instances) {
+        Person.instances = instances;
+    }
 
     private Person(String firstName, String lastName, LocalDate  date_of_Birth, String phoneNumber, String email, String password) throws Exception {
-
+        String pRegex = "^\\+?\\d{1,3}[\\s-]?\\(?\\d{1,4}\\)?[\\s-]?\\d{1,4}[\\s-]?\\d{1,4}[\\s-]?\\d{1,4}$";
         int idToCheck= instances.isEmpty()?0: instances.get(instances.size()-1).id+1;
         for(Person m : instances){
             if (m.id==idToCheck)
                 throw new Exception("Person of this ID already exists");
         }
+        Pattern pPattern=Pattern.compile(pRegex);
+        Matcher pMatcher= pPattern.matcher(phoneNumber);
+        if(pMatcher.matches())
+            this.setPhoneNumber(phoneNumber);
+        else
+            throw new Exception("Wrong phone number format");
         this.id=idToCheck;
         this.firstName = firstName;
         this.lastName = lastName;
         this.Date_of_Birth = date_of_Birth;
         this.age= LocalDate.now().getYear()-date_of_Birth.getYear();
-        this.setPhoneNumber(phoneNumber);
+
         this.email = email;
         this.password=password;
         instances.add(this);
@@ -75,9 +90,7 @@ public class Person {
         return instances;
     }
 
-    public static void setInstances(ArrayList<Person> personIntanses) {
-        Person.instances = instances;
-    }
+
 
     public static void removeInstance(Person person){
         instances.remove(person);

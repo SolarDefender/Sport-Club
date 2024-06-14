@@ -3,24 +3,24 @@ package Models;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Dietition extends Employee implements IDietition {
+public class Dietitian extends Employee implements IDietitian {
 
     public ArrayList<Diploma> educationDiplomas=new ArrayList<>();
     public ArrayList<Diet> diets=new ArrayList<>();
-     public Dietition(Person person, String position, double salary, ArrayList<Contract> contracts,Diploma diploma) {
+     public Dietitian(Person person, String position, double salary, ArrayList<Contract> contracts, Diploma diploma) {
         super(person, position, salary, contracts);
         this.educationDiplomas.add(diploma);
     }
 
-    public Dietition(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, String position, double salary, ArrayList<Contract> contracts,Diploma diploma) throws Exception {
+    public Dietitian(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, String position, double salary, ArrayList<Contract> contracts, Diploma diploma) throws Exception {
         super(firstName, lastName, date_of_Birth, phoneNumber, email, password, position, salary, contracts);
     }
-    public Dietition(Person person, String position, double salary, ArrayList<Contract> contracts,ArrayList<Diploma> diplomas) {
+    public Dietitian(Person person, String position, double salary, ArrayList<Contract> contracts, ArrayList<Diploma> diplomas) {
         super(person, position, salary, contracts);
         this.educationDiplomas=diplomas;
     }
 
-    public Dietition(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, String position, double salary, ArrayList<Contract> contracts,ArrayList<Diploma> diplomas) throws Exception {
+    public Dietitian(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, String position, double salary, ArrayList<Contract> contracts, ArrayList<Diploma> diplomas) throws Exception {
         super(firstName, lastName, date_of_Birth, phoneNumber, email, password, position, salary, contracts);
         this.educationDiplomas=diplomas;
     }
