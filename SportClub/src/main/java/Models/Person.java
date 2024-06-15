@@ -78,6 +78,7 @@ public class Person implements Serializable{
         return employeeLink;
     }
 
+
     public static void createClient(Client client, String firstName, String lastName, LocalDate  date_of_Birth, String phoneNumber, String email, String password) throws Exception {
         Person p=new Person(firstName, lastName, date_of_Birth, phoneNumber, email, password);
         p.clientLink=client;

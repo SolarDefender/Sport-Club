@@ -18,6 +18,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -82,6 +83,7 @@ public class DaySchController {
                 leaveClass();
             });
             Serializator.save();
+            alarmLabel.setTextFill(Color.LIGHTGREEN);
             alarmLabel.setText("You successfully joined the class");
         }
         catch (NullPointerException e){
@@ -98,6 +100,7 @@ public class DaySchController {
                 joinClass();
             });
             Serializator.save();
+            alarmLabel.setTextFill(Color.RED);
             alarmLabel.setText("You successfully left the class");
         }
         catch (NullPointerException e){

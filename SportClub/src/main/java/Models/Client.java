@@ -12,15 +12,14 @@ public class Client implements Serializable {
     private Diet diet;
     private static ArrayList<Client> instances = new ArrayList<>();
 
-    public Client(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, Subscription subscription) throws Exception {
+    public Client(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, SubscriptionType subType, LocalDate subExpireDate) throws Exception {
 
         for(Client c : instances)
             if (c.personLink.email.equals(email))
                 throw new Exception("Person of this email already exists");
-
-        this.subscription = subscription;
-        this.subscription.setClient(this);
+        Subscription.createSubscribtion(subType,subExpireDate,this);
         Person.createClient(this, firstName, lastName, date_of_Birth, phoneNumber, email, password);
+
         instances.add(this);
 
     }
@@ -47,6 +46,15 @@ public class Client implements Serializable {
 
     public Person getPersonLink() {
         return personLink;
+    }
+
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
+    public void removeClient(){
+        this.personLink.setClient(null);
+        this.subscription.removeSubscription();
+        instances.remove(this);
     }
 
     public void setPersonLink(Person personLink) {

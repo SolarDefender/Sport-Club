@@ -135,33 +135,19 @@ public class DataCreator {
 //    }
     public static void createData() {
         try {
-            Subscription sub1 = new Subscription(SubscriptionType.BASIC, LocalDate.of(2023, 12, 31));
-            Subscription sub2 = new Subscription(SubscriptionType.STANDARD, LocalDate.of(2023, 11, 30));
-            Subscription sub3 = new Subscription(SubscriptionType.PREMIUM, LocalDate.of(2023, 10, 31));
-            Subscription sub4 = new Subscription(SubscriptionType.BASIC, LocalDate.of(2023, 9, 30));
-            Subscription sub5 = new Subscription(SubscriptionType.STANDARD, LocalDate.of(2023, 8, 31));
 
             // Создание объектов Client
-            Client client1 = new Client("Alice", "Brown", LocalDate.of(1995, 1, 15), "678-901-2345", "alice.brown@example.com", "password201", sub1);
-            Client client2 = new Client("asdsaasa", "Brown", LocalDate.of(1995, 1, 15), "678-901-2345", "alicdae.brasown@example.com", "password201", sub1);
-            Client client3 = new Client("Emma", "Martinez", LocalDate.of(1992, 3, 20), "890-123-4567", "emma.martinez@example.com", "password203", sub3);
-            Client client4 = new Client("Olivia", "Garcia", LocalDate.of(1990, 4, 10), "901-234-5678", "olivia.garcia@example.com", "password204", sub4);
-            Client client5 = new Client("Liam", "Rodriguez", LocalDate.of(1985, 5, 5), "012-345-6789", "liam.rodriguez@example.com", "password205", sub5);
+            Client client1 = new Client("Alice", "Brown", LocalDate.of(1995, 1, 15), "678-901-2345", "alice.brown@example.com", "password201",SubscriptionType.BASIC, LocalDate.of(2023, 12, 31) );
+            Client client2 = new Client("asdsaasa", "Brown", LocalDate.of(1995, 1, 15), "678-901-2345", "alicdae.brasown@example.com", "password201", SubscriptionType.STANDARD, LocalDate.of(2023, 11, 30));
+            Client client3 = new Client("Emma", "Martinez", LocalDate.of(1992, 3, 20), "890-123-4567", "emma.martinez@example.com", "password203",SubscriptionType.PREMIUM, LocalDate.of(2023, 10, 31) );
+            Client client4 = new Client("Olivia", "Garcia", LocalDate.of(1990, 4, 10), "901-234-5678", "olivia.garcia@example.com", "password204",SubscriptionType.BASIC, LocalDate.of(2023, 9, 30) );
+            Client client5 = new Client("Liam", "Rodriguez", LocalDate.of(1985, 5, 5), "012-345-6789", "liam.rodriguez@example.com", "password205", SubscriptionType.STANDARD, LocalDate.of(2023, 8, 31));
+            Client client6 = new Client("Sophia", "Johnson", LocalDate.of(1994, 6, 12), "234-567-8901", "sophia.johnson@example.com", "password206",SubscriptionType.BASIC, LocalDate.of(2024, 1, 31) );
+            Client client7 = new Client("James", "Smith", LocalDate.of(1987, 7, 25), "345-678-9012", "james.smith@example.com", "password207",SubscriptionType.STANDARD, LocalDate.of(2024, 2, 28) );
+            Client client8 = new Client("Benjamin", "Lee", LocalDate.of(1991, 8, 18), "456-789-0123", "benjamin.lee@example.com", "password208",SubscriptionType.PREMIUM, LocalDate.of(2024, 3, 31) );
+            Client client9 = new Client("Mia", "Davis", LocalDate.of(1989, 9, 14), "567-890-1234", "mia.davis@example.com", "password209",SubscriptionType.BASIC, LocalDate.of(2024, 4, 30) );
+            Client client10 = new Client("Isabella", "Wilson", LocalDate.of(1993, 10, 30), "678-901-2345", "isabella.wilson@example.com", "password210", SubscriptionType.STANDARD, LocalDate.of(2024, 5, 31));
             System.out.println(Client.getInstances());
-
-            // Создание новых объектов Subscription
-            Subscription sub6 = new Subscription(SubscriptionType.BASIC, LocalDate.of(2024, 1, 31));
-            Subscription sub7 = new Subscription(SubscriptionType.STANDARD, LocalDate.of(2024, 2, 28));
-            Subscription sub8 = new Subscription(SubscriptionType.PREMIUM, LocalDate.of(2024, 3, 31));
-            Subscription sub9 = new Subscription(SubscriptionType.BASIC, LocalDate.of(2024, 4, 30));
-            Subscription sub10 = new Subscription(SubscriptionType.STANDARD, LocalDate.of(2024, 5, 31));
-
-// Создание новых объектов Client
-            Client client6 = new Client("Sophia", "Johnson", LocalDate.of(1994, 6, 12), "234-567-8901", "sophia.johnson@example.com", "password206", sub6);
-            Client client7 = new Client("James", "Smith", LocalDate.of(1987, 7, 25), "345-678-9012", "james.smith@example.com", "password207", sub7);
-            Client client8 = new Client("Benjamin", "Lee", LocalDate.of(1991, 8, 18), "456-789-0123", "benjamin.lee@example.com", "password208", sub8);
-            Client client9 = new Client("Mia", "Davis", LocalDate.of(1989, 9, 14), "567-890-1234", "mia.davis@example.com", "password209", sub9);
-            Client client10 = new Client("Isabella", "Wilson", LocalDate.of(1993, 10, 30), "678-901-2345", "isabella.wilson@example.com", "password210", sub10);
 
             ArrayList<Coach> coaches = createCoaches();
             ArrayList<Dietitian> dietitians=createDietitians();
@@ -222,7 +208,7 @@ public class DataCreator {
 
     private static ArrayList<Certificate> createCertificates() throws Exception {
         ArrayList<Certificate> certificates = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 11; i++) {
             certificates.add(new Certificate(i, LocalDate.of(2020, 1, i), LocalDate.of(2022, 1, i), LocalDate.of(2023, 12, 31)));
         }
         return certificates;
