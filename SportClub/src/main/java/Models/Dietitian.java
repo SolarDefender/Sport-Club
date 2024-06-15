@@ -7,21 +7,21 @@ public class Dietitian extends Employee implements IDietitian {
 
     public ArrayList<Diploma> educationDiplomas=new ArrayList<>();
     public ArrayList<Diet> diets=new ArrayList<>();
-     public Dietitian(Person person, String position, double salary, ArrayList<Contract> contracts, Diploma diploma) {
-        super(person, position, salary, contracts);
+     public Dietitian(Person person, String position, double salary,  Diploma diploma) {
+        super(person, position, salary );
         this.educationDiplomas.add(diploma);
     }
 
-    public Dietitian(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, String position, double salary, ArrayList<Contract> contracts, Diploma diploma) throws Exception {
-        super(firstName, lastName, date_of_Birth, phoneNumber, email, password, position, salary, contracts);
+    public Dietitian(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, String position, double salary,  Diploma diploma) throws Exception {
+        super(firstName, lastName, date_of_Birth, phoneNumber, email, password, position, salary );
     }
-    public Dietitian(Person person, String position, double salary, ArrayList<Contract> contracts, ArrayList<Diploma> diplomas) {
-        super(person, position, salary, contracts);
+    public Dietitian(Person person, String position, double salary,  ArrayList<Diploma> diplomas) {
+        super(person, position, salary );
         this.educationDiplomas=diplomas;
     }
 
-    public Dietitian(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, String position, double salary, ArrayList<Contract> contracts, ArrayList<Diploma> diplomas) throws Exception {
-        super(firstName, lastName, date_of_Birth, phoneNumber, email, password, position, salary, contracts);
+    public Dietitian(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, String position, double salary,  ArrayList<Diploma> diplomas) throws Exception {
+        super(firstName, lastName, date_of_Birth, phoneNumber, email, password, position, salary );
         this.educationDiplomas=diplomas;
     }
     @Override

@@ -10,28 +10,24 @@ public class Employee implements Serializable {
     private String position;
     private double salary;
 
-    private ArrayList<Contract> contracts = new ArrayList<>();
+
     private Person personLink;
     private Employee supervisor;
     private ArrayList<Employee> subordinates = new ArrayList<>();
     private static ArrayList<Employee> instances =new ArrayList<>();
 
-    public Employee( Person person, String position, double salary, ArrayList<Contract> contracts) {
+    public Employee( Person person, String position, double salary) {
         this.position = position;
         this.salary = salary;
-        this.contracts = contracts;
         this.personLink = person;
         this.personLink.setEmployee(this);
-        for (Contract c: contracts)
-            c.setEmp(this);
+
         instances.add(this);
     }
-    public Employee(String firstName, String lastName, LocalDate  date_of_Birth, String phoneNumber, String email, String password, String position, double salary, ArrayList<Contract> contracts) throws Exception {
+    public Employee(String firstName, String lastName, LocalDate  date_of_Birth, String phoneNumber, String email, String password, String position, double salary) throws Exception {
         this.position = position;
         this.salary = salary;
-        this.contracts = contracts;
-        for (Contract c: contracts)
-            c.setEmp(this);
+
         Person.createEmployee(this, firstName,  lastName,   date_of_Birth,  phoneNumber,  email, password);
         instances.add(this);
     }
@@ -66,12 +62,7 @@ public class Employee implements Serializable {
                 this.subordinates.add(emp);
 
     }
-    public void addContract(Contract c){
-        if (!contracts.contains(c)) {
-            contracts.add(c);
-            contracts.sort(Comparator.comparing(contract -> contract.startDate));
-        }
-    }
+
 
     @Override
     public String toString() {

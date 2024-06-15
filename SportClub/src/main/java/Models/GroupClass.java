@@ -10,23 +10,35 @@ import java.util.TreeMap;
 
 public class GroupClass implements Serializable {
     public String name;
+    private Coach coach;
     private Map<Integer,Client> clientQualif=new TreeMap<>();
     private ArrayList<ClassSession> sessions = new ArrayList<>();
     private static ArrayList<GroupClass> instances=new ArrayList<>();
-    public GroupClass(String name,ArrayList<ClassSession> sessions) {
+    public GroupClass(String name,Coach coach,ArrayList<ClassSession> sessions) throws Exception {
+        for(GroupClass groupClass : instances){
+            if (groupClass.name==name)
+                throw new Exception("Person of this ID already exists");
+        }
         this.name = name;
         this.sessions=sessions;
         for(ClassSession session : sessions)
             session.setGroupClass(this);
         instances.add(this);
+        this.coach=coach;
+        this.coach.addGroupClass(this);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Coach getCoach() {
+        return coach;
     }
 
     public void addClientQualif(Client client){
-        if(!this.clientQualif.containsValue(client)){
+        if(!this.clientQualif.containsValue(client))
             this.clientQualif.put(client.getPersonLink().getId(),client);
-        }
-        else
-            System.out.println("Client: "+ client.getPersonLink().firstName+" is already in group: "+this.name);
     }
 
     public ArrayList<ClassSession> getSessions() {
@@ -40,6 +52,9 @@ public class GroupClass implements Serializable {
         if (clientQualif.containsValue(client)) {
             clientQualif.remove(client.getPersonLink().getId());
             System.out.println("Client succesfully removed from class");
+            for(ClassSession cs : sessions){
+                cs.removeClient(client);
+            }
         }
         else
             System.out.println("Provided client is not registered for this class");

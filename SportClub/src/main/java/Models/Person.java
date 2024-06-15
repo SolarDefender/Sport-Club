@@ -1,6 +1,8 @@
 package Models;
 
 
+import Services.LoginSingleton;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -48,6 +50,32 @@ public class Person implements Serializable{
         this.email = email;
         this.password=password;
         instances.add(this);
+    }
+    public static boolean login(String email, String password){
+        for (Person p : instances){
+            if (p.email.equals(email)&&p.password.equals(password)) {
+                LoginSingleton.setCurrentUser(p);
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void showUsers(){
+        for (Person p : instances){
+            if (p.clientLink!=null) {
+                System.out.println("Name: " + p.firstName + " " + p.lastName);
+                System.out.println("Email: " + p.email);
+                System.out.println("Email: " + p.password);
+            }
+        }
+    }
+
+    public Client getClientLink() {
+        return clientLink;
+    }
+
+    public Employee getEmployeeLink() {
+        return employeeLink;
     }
 
     public static void createClient(Client client, String firstName, String lastName, LocalDate  date_of_Birth, String phoneNumber, String email, String password) throws Exception {

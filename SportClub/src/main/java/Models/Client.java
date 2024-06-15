@@ -13,10 +13,16 @@ public class Client implements Serializable {
     private static ArrayList<Client> instances = new ArrayList<>();
 
     public Client(String firstName, String lastName, LocalDate date_of_Birth, String phoneNumber, String email, String password, Subscription subscription) throws Exception {
+
+        for(Client c : instances)
+            if (c.personLink.email.equals(email))
+                throw new Exception("Person of this email already exists");
+
         this.subscription = subscription;
         this.subscription.setClient(this);
         Person.createClient(this, firstName, lastName, date_of_Birth, phoneNumber, email, password);
         instances.add(this);
+
     }
 
     public Client(Person person, Subscription subscription) throws Exception {
