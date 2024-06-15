@@ -37,6 +37,4 @@ SportClub is a comprehensive management system designed for sports clubs. The sy
 - Can prescribe dietary plans to their clients.
 - A trainer can also hold the role of a dietitian, provided they meet the qualifications.
 
-### Administrator (Employee)
-- Holds the highest level of access within the system.
-- Can modify user data and manipulate all data within the system.
+

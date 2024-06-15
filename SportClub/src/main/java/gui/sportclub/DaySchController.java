@@ -85,6 +85,7 @@ public class DaySchController {
                 Serializator.save();
                 alarmLabel.setTextFill(Color.LIGHTGREEN);
                 alarmLabel.setText("You successfully joined the class");
+                refresh();
             }
             else {
                 alarmLabel.setTextFill(Color.RED);
@@ -108,6 +109,7 @@ public class DaySchController {
             alarmLabel.setTextFill(Color.RED);
             alarmLabel.setTextFill(Color.LIGHTGREEN);
             alarmLabel.setText("You successfully left the class");
+            refresh();
         }
         catch (NullPointerException e){
             alarmLabel.setText("SELECT CLASS");
@@ -160,12 +162,17 @@ public class DaySchController {
                     });
                 }
                 groupClassNameLabel.setText(selectedSession.getName());
-                coachLabel.setText(selectedSession.getGroupClass().getCoach().getPersonLink().firstName);
-                timeLabel.setText(selectedSession.getStartTime()+"   -   "+ selectedSession.getEndTime());
-                membersLabel.setText(selectedSession.totalMembers + "/" + selectedSession.getMaxMembers());
+                   refresh();
 
                 // Здесь можно выполнить действия по выбранной сессии
             }
         }
     }
+    private void refresh(){
+        coachLabel.setText(selectedSession.getGroupClass().getCoach().getPersonLink().firstName);
+        timeLabel.setText(selectedSession.getStartTime()+"   -   "+ selectedSession.getEndTime());
+        membersLabel.setText(selectedSession.totalMembers + "/" + selectedSession.getMaxMembers());
+    }
+
 }
+

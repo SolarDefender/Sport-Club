@@ -8,10 +8,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class ClassSession implements Serializable {
+    private enum States{ UNSTARTED,INPROCESS,FINISHED}
     private DayOfWeek day;
     private LocalTime startTime;
     private LocalTime endTime;
     private GroupClass groupClass;
+    public States state;
     public int totalMembers =0;
     private boolean completed=false;
 //    private Duration duration = Duration.between(startTime, endTime);
@@ -24,6 +26,13 @@ public class ClassSession implements Serializable {
         this.day = day;
         this.startTime =startTime;
         this.endTime = endTime;
+        if (LocalTime.now().isAfter(startTime)&&LocalTime.now().isBefore(endTime))
+            this.state=States.INPROCESS;
+        else if (LocalTime.now().isBefore(startTime))
+            this.state=States.UNSTARTED;
+        else
+            this.state=States.FINISHED;
+
     }
     public ClassSession(int day, LocalTime startTime, LocalTime endTime) {
         this.day = DayOfWeek.of(day);
