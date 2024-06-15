@@ -75,16 +75,21 @@ public class DaySchController {
     }
     public void joinClass(){
         try{
-
-            selectedSession.addClientQualif(LoginSingleton.getCurrentUser().getClientLink());
-            System.out.println("Selected session: " + selectedSession.getName());
-            joinButton.setText("Leave class");
-            joinButton.setOnAction(MouseEvent->{
-                leaveClass();
-            });
-            Serializator.save();
-            alarmLabel.setTextFill(Color.LIGHTGREEN);
-            alarmLabel.setText("You successfully joined the class");
+            boolean result=selectedSession.addClientQualif(LoginSingleton.getCurrentUser().getClientLink());
+            if(result) {
+                System.out.println("Selected session: " + selectedSession.getName());
+                joinButton.setText("Leave class");
+                joinButton.setOnAction(MouseEvent -> {
+                    leaveClass();
+                });
+                Serializator.save();
+                alarmLabel.setTextFill(Color.LIGHTGREEN);
+                alarmLabel.setText("You successfully joined the class");
+            }
+            else {
+                alarmLabel.setTextFill(Color.RED);
+                alarmLabel.setText("This class is full");
+            }
         }
         catch (NullPointerException e){
             alarmLabel.setText("SELECT CLASS");
@@ -101,6 +106,7 @@ public class DaySchController {
             });
             Serializator.save();
             alarmLabel.setTextFill(Color.RED);
+            alarmLabel.setTextFill(Color.LIGHTGREEN);
             alarmLabel.setText("You successfully left the class");
         }
         catch (NullPointerException e){

@@ -17,8 +17,8 @@ public class ClassSession implements Serializable {
 //    private Duration duration = Duration.between(startTime, endTime);
 //    private long durationHours = duration.toHours();
 //    private long durationMinutes = duration.toMinutes() % 60;
-    private final static int minMembers =4;
-    private final static int maxMembers=10;
+    private final static int minMembers =1;
+    private final static int maxMembers=3;
     private Map<Integer,Client> clientQualif=new TreeMap<>();
     public ClassSession(DayOfWeek day, LocalTime startTime, LocalTime endTime) {
         this.day = day;
@@ -40,13 +40,16 @@ public class ClassSession implements Serializable {
         }
     }
 
-    public void addClientQualif(Client client){
+    public boolean addClientQualif(Client client){
         if(!this.clientQualif.containsValue(client)&& totalMembers<maxMembers){
             this.clientQualif.put(client.getPersonLink().getId(),client);
             totalMembers++;
+            return true;
         }
-        else
-            System.out.println("Client: "+ client.getPersonLink().firstName+" is already in group: "+this.groupClass.name +"in "+getDayOfWeek());
+        else {
+            System.out.println("Client: " + client.getPersonLink().firstName + " is already in group: " + this.groupClass.name + "in " + getDayOfWeek());
+            return false;
+        }
     }
 
 
