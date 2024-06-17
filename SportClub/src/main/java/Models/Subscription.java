@@ -25,6 +25,7 @@ public class Subscription implements Serializable {
         s.client=client;
         s.client.setSubscription(s);
     }
+
     public void removeSubscription(){
         instanses.remove(this);
     }

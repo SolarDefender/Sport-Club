@@ -32,6 +32,12 @@ public class Client implements Serializable {
         instances.add(this);
     }
 
+    public static void removeExpiredClients(){
+        for(Client c : instances)
+            if (c.getSubscription().expireDate.isBefore(LocalDate.now().minusMonths(6)))
+                c.removeClient();
+    }
+
     public static ArrayList<Client> getInstances() {
         return instances;
     }
